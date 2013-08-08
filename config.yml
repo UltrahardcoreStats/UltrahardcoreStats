@@ -1,0 +1,12 @@
+# UltraHardcore Stats
+# Written by: ttaylorr
+
+api_key: YOUR_API_HERE
+
+use_multiverse: false
+pvp_world_name: spawn
+kill_default: uhc
+
+use_juggernaut: false
+
+stats_announce: true

@@ -1,0 +1,13 @@
+name: UltraHardcore Stats
+main: com.ttaylorr.uhc.stats.WebInterface
+version: 1.9
+commands:
+    stats:
+        description: Get your stats from the database
+        usage: /stats [player]
+    register:
+        description: Register your profile page on uhc.ttaylorr.com
+        usage: /register <email>
+    report:
+        description: Report a player to be reviewed by an admin
+        usage: /report <player> <reason>
