@@ -1,6 +1,6 @@
 name: UltraHardcore Stats
 main: com.ttaylorr.uhc.stats.WebInterface
-version: 1.9
+version: 1.12
 commands:
     stats:
         description: Get your stats from the database
@@ -11,3 +11,7 @@ commands:
     report:
         description: Report a player to be reviewed by an admin
         usage: /report <player> <reason>
+    killstreak:
+        description: Alerts you of your current killstreak
+        usage: /killstreak, /ks
+        aliases: [ks]

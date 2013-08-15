@@ -20,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.ttaylorr.uhc.stats.cmd.KillstreakCommandExecutor;
 import com.ttaylorr.uhc.stats.cmd.RegisterCommandExecutor;
 import com.ttaylorr.uhc.stats.cmd.ReportCommandExecutor;
 
@@ -46,6 +47,8 @@ public class WebInterface extends JavaPlugin {
 	private static String MULTIVERSE_NAME = "";
 	private static String DEFAULT_KILL_TYPE = "";
 	private static boolean ANNOUNCE;
+	private static boolean ANNOUNCE_LONGSHOTS = false;;
+	private static boolean ANNOUNCE_KILLSTREAK = false;;
 	
 	private URL serverStopURL = null;
 
@@ -93,6 +96,14 @@ public class WebInterface extends JavaPlugin {
 		return ANNOUNCE;
 	}
 
+	public static boolean getANNOUNCE_LONGSHOTS() {
+		return ANNOUNCE_LONGSHOTS;
+	}
+
+	public static boolean getANNOUNCE_KILLSTREAK() {
+		return ANNOUNCE_KILLSTREAK;
+	}
+
 	public static String getDEFAULT_KILL_TYPE() {
 		return DEFAULT_KILL_TYPE;
 	}
@@ -118,7 +129,10 @@ public class WebInterface extends JavaPlugin {
 		USE_MULTIVERSE = getConfig().getString("use_multiverse").equals("true") ? true : false;
 		MULTIVERSE_NAME = getConfig().getString("pvp_world_name");
 		DEFAULT_KILL_TYPE = getConfig().getString("kill_default");
-		USE_JUGGERNAUT = getConfig().getString("use_juggernaut").equals("true") ? true : false;
+//		USE_JUGGERNAUT = getConfig().getString("use_juggernaut").equals("true") ? true : false;
+		USE_JUGGERNAUT = false;
+		ANNOUNCE_LONGSHOTS = getConfig().getString("announce_longshots").equalsIgnoreCase("true") ? true : false;
+		ANNOUNCE_KILLSTREAK = getConfig().getString("announce_killstreak").equalsIgnoreCase("true") ? true : false;
 		ANNOUNCE = getConfig().getString("stats_announce").equals("true") ? true : false;
 		
 		try {
@@ -155,6 +169,7 @@ public class WebInterface extends JavaPlugin {
 
 		getCommand("register").setExecutor(new RegisterCommandExecutor(this));
 		getCommand("report").setExecutor(new ReportCommandExecutor(this));
+		getCommand("killstreak").setExecutor(new KillstreakCommandExecutor(this));
 
 		for (Player p : Bukkit.getServer().getOnlinePlayers()) {
 			playerProjectiles.add(new PlayerProjectileTracker(p, 0, 0));

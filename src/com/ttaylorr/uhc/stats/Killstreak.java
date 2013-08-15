@@ -32,7 +32,9 @@ public class Killstreak {
 	
 	public void addKill() {
 		this.kills++;
-		player.sendMessage(ChatColor.GOLD + "[PVP] You're on a " + getKills() + " killstreak!" + ChatColor.RESET);
+		if(WebInterface.getANNOUNCE_KILLSTREAK()) {
+			this.getPlayer().sendMessage(ChatColor.GOLD + "[PVP] - " + ChatColor.BLUE + "You're on a " + ChatColor.GREEN + this.getKills() + ChatColor.BLUE + " killstreak!" + ChatColor.RESET);			
+		}
 	}
 	
 }

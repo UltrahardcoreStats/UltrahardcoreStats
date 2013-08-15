@@ -10,3 +10,5 @@ kill_default: uhc
 use_juggernaut: false
 
 stats_announce: true
+announce_longshots: false
+announce_killstreak: false
