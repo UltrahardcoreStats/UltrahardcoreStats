@@ -1,4 +1,4 @@
-UltrahardcoreStats (v.1_11)
+UltrahardcoreStats (v.1_13)
 ==========================
 
 What is Ultrahardcore Stats?
