@@ -1,6 +1,8 @@
 package com.ttaylorr.uhc.stats;
 
 //import org.bukkit.Bukkit;
+import java.net.URL;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -45,15 +47,26 @@ public class EntityDamageEntityHandler implements Listener {
 
 	@EventHandler
 	public void onArrowLand(EntityDamageByEntityEvent event) {
-		if (event.getDamager() instanceof Arrow) {
+		if (event.getDamager() instanceof Arrow && event.getEntity() instanceof Player) {
 			Arrow arrow = (Arrow) event.getDamager();
 
 			if (arrow.getShooter() != null && arrow.getShooter() instanceof Player) {
 				int dist = distance(event.getEntity().getLocation(), arrow.getShooter().getLocation());
 
-				if (dist >= 10) {
+				if (dist >= 50) {
 					if(WebInterface.getANNOUNCE_LONGSHOTS()) {
 						Bukkit.broadcastMessage(ChatColor.GOLD + "[Stats] - " + ChatColor.GREEN + ((Player) arrow.getShooter()).getName() + ChatColor.BLUE + " got a longshot of " + ChatColor.GREEN + dist + ChatColor.BLUE + " blocks!" + ChatColor.RESET);						
+					
+						final Player shooter = (Player) arrow.getShooter();
+						final Player target = (Player) event.getEntity();
+						
+						try {
+							URL playerLongshotURL = new URL("http://uhc.ttaylorr.com/stats_php/longshot.php?api=" + WebInterface.getAPI_KEY() + "&shooter=" + shooter.getName() + "&target=" + target.getName() + "&dist=" + dist);
+							Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerLongshotURL));
+						} catch (Exception e) {
+
+						}
+
 					}
 				}
 			}
