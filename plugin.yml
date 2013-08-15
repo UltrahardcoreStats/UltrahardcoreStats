@@ -1,6 +1,6 @@
 name: UltraHardcore Stats
 main: com.ttaylorr.uhc.stats.WebInterface
-version: 1.12
+version: 1.13
 commands:
     stats:
         description: Get your stats from the database
