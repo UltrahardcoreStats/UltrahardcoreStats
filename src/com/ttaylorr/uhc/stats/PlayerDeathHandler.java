@@ -79,6 +79,14 @@ public class PlayerDeathHandler implements Listener {
 
 		}
 
+		args.add("" + event.getEntity().getLocation().getX());
+		args.add("" + event.getEntity().getLocation().getY());
+		args.add("" + event.getEntity().getLocation().getZ());
+		args.add("" + event.getEntity().getKiller().getLocation().getX());
+		args.add("" + event.getEntity().getKiller().getLocation().getY());
+		args.add("" + event.getEntity().getKiller().getLocation().getZ());
+		args.add("" + event.getEntity().getKiller().getHealth());
+		
 		/*
 		 * ARGS: the player's name that died the time of the event if the killer
 		 * was an entity (true if entity) the killer's name (0 if enviroment)
@@ -86,7 +94,7 @@ public class PlayerDeathHandler implements Listener {
 		 */
 
 		try {
-			URL playerDeathURL = new URL("http://uhc.ttaylorr.com/stats_php/death.php?player=" + args.get(0) + "&entity=" + args.get(3) + "&killer=" + args.get(4) + "&item=" + args.get(5) + "&pvp=" + args.get(2) + "&api=" + WebInterface.getAPI_KEY());
+			URL playerDeathURL = new URL("http://uhc.ttaylorr.com/stats_php/death.php?player=" + args.get(0) + "&entity=" + args.get(3) + "&killer=" + args.get(4) + "&item=" + args.get(5) + "&pvp=" + args.get(2) + "&api=" + WebInterface.getAPI_KEY() + "&x1=" + args.get(6)+ "&y1=" + args.get(7)+ "&z1=" + args.get(8)+ "&x2=" + args.get(9)+ "&y2=" + args.get(10)+ "&z2=" + args.get(11) + "&player_health=" + args.get(12));
 			Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerDeathURL));
 		} catch (Exception e) {
 		}
