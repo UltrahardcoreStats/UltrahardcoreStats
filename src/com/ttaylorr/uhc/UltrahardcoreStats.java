@@ -13,6 +13,7 @@ public class UltrahardcoreStats extends JavaPlugin {
 	private static FeatureList features;
 	private static UltrahardcoreStats instance;
 	private static URLManager URLmanager;
+	private static String API_KEY;
 	private Logger log = this.getServer().getLogger();
 	
 	public void onDisable() {
@@ -30,6 +31,8 @@ public class UltrahardcoreStats extends JavaPlugin {
 		
 		features.getFeatures().clear();
 
+		API_KEY = this.getConfig().getString("API_KEY") != null ? this.getConfig().getString("API_KEY") : "INVALID";
+		
 		this.loadDefaultModules();
 		this.loadDefaultCommands();
 		
@@ -54,5 +57,9 @@ public class UltrahardcoreStats extends JavaPlugin {
 	
 	public static URLManager getURLManager() {
 		return URLmanager;
+	}
+
+	public static String getAPI_KEY() {
+		return API_KEY;
 	}
 }

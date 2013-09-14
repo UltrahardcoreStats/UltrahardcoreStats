@@ -6,29 +6,31 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.HashMap;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
+
+import com.ttaylorr.uhc.UltrahardcoreStats;
 
 public class URLRunnable implements Runnable {
 
 	private URL url;
 	private boolean doVerboseOutput;
 	
-	public URLRunnable(URL url) throws MalformedURLException {
-		try {
-			this.url = url;
-		} catch(Exception e) {
-			throw new MalformedURLException();
+	public URLRunnable(String appendURL, HashMap<String, String> args, boolean doVerboseOutput) throws MalformedURLException {
+		StringBuffer buffer = new StringBuffer();
+		
+		buffer.append(URLManager.BASE_URL + appendURL + "/");
+		buffer.append("?api=" + UltrahardcoreStats.getAPI_KEY());
+		
+		Set<String> keys = args.keySet();
+		for(String key : keys) {
+			buffer.append("&" + key + "=" + args.get(key));
 		}
-	}
-	
-	public URLRunnable(URL url, boolean doVerboseOutput) throws MalformedURLException {
-		try {
-			this.url = url;
-			this.doVerboseOutput = doVerboseOutput;
-		} catch(Exception e) {
-			throw new MalformedURLException();
-		}
+		
+		this.url = new URL(buffer.toString());
+		this.doVerboseOutput = doVerboseOutput;
 	}
 	
 	@Override
