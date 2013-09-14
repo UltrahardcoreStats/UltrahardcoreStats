@@ -18,14 +18,14 @@ public class OnlinePlayersFeature extends StatsFeature {
 		this.setTitle("Online Players Feature");
 		this.setDescription("Displays all players online on the website");
 	}
-	
+
 	@EventHandler
 	public void onPlayerLogin(PlayerLoginEvent event) throws IllegalArgumentException, MalformedURLException {
-		if(this.isEnabled()) {
+		if (this.isEnabled()) {
 			HashMap<String, String> args = new HashMap<String, String>();
 			args.put("player", "ttaylorr");
-			
-			Bukkit.getScheduler().runTaskAsynchronously(UltrahardcoreStats.getInstance(), new URLRunnable("login.php",args,false));
+
+			Bukkit.getScheduler().runTaskAsynchronously(UltrahardcoreStats.getInstance(), new URLRunnable("login.php", args, false));
 		}
 	}
 

@@ -17,40 +17,40 @@ public class URLRunnable implements Runnable {
 
 	private URL url;
 	private boolean doVerboseOutput;
-	
+
 	public URLRunnable(String appendURL, HashMap<String, String> args, boolean doVerboseOutput) throws MalformedURLException {
 		StringBuffer buffer = new StringBuffer();
-		
+
 		buffer.append(URLManager.BASE_URL + appendURL + "/");
 		buffer.append("?api=" + UltrahardcoreStats.getAPI_KEY());
-		
+
 		Set<String> keys = args.keySet();
-		for(String key : keys) {
+		for (String key : keys) {
 			buffer.append("&" + key + "=" + args.get(key));
 		}
-		
+
 		this.url = new URL(buffer.toString());
 		this.doVerboseOutput = doVerboseOutput;
 	}
-	
+
 	@Override
 	public void run() {
 		try {
 			URLConnection connection = url.openConnection();
-			
-			if(doVerboseOutput) {
+
+			if (doVerboseOutput) {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				String inputLine;
-				
-				while((inputLine = reader.readLine()) != null) {
+
+				while ((inputLine = reader.readLine()) != null) {
 					Bukkit.getServer().getLogger().info(inputLine);
 				}
-				
+
 				reader.close();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

@@ -20,21 +20,17 @@ public class StatsFeatureCommandExecutor implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length != 2) return false;
-		
+
 		else {
 			StatsFeature feature = plugin.getFeatureList().getFeatureFor(args[0]);
 
-			if(feature != null) {
-				System.out.println("feature not null");
+			if (feature != null) {
 				try {
 					if (args[1].equalsIgnoreCase("enable")) {
-						System.out.println("tyring to enable feature");
 						feature.setEnabled();
 					} else if (args[1].equalsIgnoreCase("disable")) {
-						System.out.println("tyring to disable feature");
 						feature.setDisabled();
 					} else {
-						System.out.println("o fuck");
 						return false;
 					}
 				} catch (FeatureException e) {
@@ -43,7 +39,6 @@ public class StatsFeatureCommandExecutor implements CommandExecutor {
 			} else {
 				sender.sendMessage("Could not find feature: " + args[0]);
 			}
-			
 
 			return true;
 		}
