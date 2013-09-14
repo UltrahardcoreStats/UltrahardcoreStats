@@ -3,7 +3,7 @@ package com.ttaylorr.uhc.features;
 import org.bukkit.event.Listener;
 
 import com.ttaylorr.uhc.UltrahardcoreStats;
-import com.ttaylorr.uhc.exceptions.FeatureNotFoundException;
+import com.ttaylorr.uhc.exceptions.FeatureException;
 
 public class StatsFeature implements Listener {
 
@@ -34,17 +34,16 @@ public class StatsFeature implements Listener {
 	public String getDescription() {
 		return this.description;
 	}
-
-	protected StatsFeature setEnabled(boolean enabled) {
-		this.enabled = enabled;
-		return this;
-	}
 	
-	public void setEnabled() throws FeatureNotFoundException {
+	public void setState(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public void setEnabled() throws FeatureException {
 		UltrahardcoreStats.getFeatureList().addFeature(this);
 	}
 	
-	public void setDisabled() throws FeatureNotFoundException {
+	public void setDisabled() throws FeatureException {
 		UltrahardcoreStats.getFeatureList().removeFeature(this);
 	}
 }

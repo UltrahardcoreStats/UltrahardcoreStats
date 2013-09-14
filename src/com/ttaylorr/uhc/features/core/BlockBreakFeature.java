@@ -9,14 +9,14 @@ public class BlockBreakFeature extends StatsFeature {
 
 	public BlockBreakFeature(boolean enabled) {
 		super(enabled);
-		this.setTitle("Ore Break Listener");
+		this.setTitle("ores");
 		this.setDescription("Communicates all ores being broken to the webserver...");
 	}
 
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
 		if (this.isEnabled()) {
-
+			System.out.println("Breaking blocks!");
 		}
 	}
 }

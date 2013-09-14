@@ -2,8 +2,12 @@ package com.ttaylorr.uhc;
 
 import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.ttaylorr.uhc.commands.ActiveFeaturesCommandExecutor;
+import com.ttaylorr.uhc.commands.StatsFeatureCommandExecutor;
+import com.ttaylorr.uhc.exceptions.FeatureException;
 import com.ttaylorr.uhc.features.FeatureList;
 import com.ttaylorr.uhc.features.core.BlockBreakFeature;
 import com.ttaylorr.uhc.web.URLManager;
@@ -14,7 +18,7 @@ public class UltrahardcoreStats extends JavaPlugin {
 	private static UltrahardcoreStats instance;
 	private static URLManager URLmanager;
 	private static String API_KEY;
-	private Logger log = this.getServer().getLogger();
+	private Logger log = Bukkit.getServer().getLogger();
 	
 	public void onDisable() {
 		instance = null;
@@ -39,12 +43,17 @@ public class UltrahardcoreStats extends JavaPlugin {
 	}
 	
 	protected void loadDefaultModules() {
-		features.addFeature(new BlockBreakFeature(this.getConfig().getBoolean("features.ores.enabled")));
+		try {
+			features.addFeature(new BlockBreakFeature(this.getConfig().getBoolean("features.ores.enabled")));
+		} catch(FeatureException e) {
+			e.printStackTrace();
+		}
 		// TODO: add more features here
 	}
 	
 	protected void loadDefaultCommands() {
-		// TODO: add commands here
+		getCommand("statsfeature").setExecutor(new StatsFeatureCommandExecutor(this));
+		getCommand("activefeatures").setExecutor(new ActiveFeaturesCommandExecutor(this));
 	}
 	
 	public static UltrahardcoreStats getInstance() {
