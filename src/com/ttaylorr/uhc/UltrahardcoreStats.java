@@ -9,7 +9,8 @@ import com.ttaylorr.uhc.commands.ActiveFeaturesCommandExecutor;
 import com.ttaylorr.uhc.commands.StatsFeatureCommandExecutor;
 import com.ttaylorr.uhc.exceptions.FeatureException;
 import com.ttaylorr.uhc.features.FeatureList;
-import com.ttaylorr.uhc.features.core.BlockBreakFeature;
+import com.ttaylorr.uhc.features.core.OreBreakFeature;
+import com.ttaylorr.uhc.features.core.OnlinePlayersFeature;
 import com.ttaylorr.uhc.web.URLManager;
 
 public class UltrahardcoreStats extends JavaPlugin {
@@ -35,7 +36,7 @@ public class UltrahardcoreStats extends JavaPlugin {
 
 		features.getFeatures().clear();
 
-		API_KEY = this.getConfig().getString("API_KEY") != null ? this.getConfig().getString("API_KEY") : "INVALID";
+		API_KEY = this.getConfig().getString("api-key");
 
 		this.loadDefaultModules();
 		this.loadDefaultCommands();
@@ -44,7 +45,9 @@ public class UltrahardcoreStats extends JavaPlugin {
 
 	protected void loadDefaultModules() {
 		try {
-			features.addFeature(new BlockBreakFeature(this.getConfig().getBoolean("features.ores.enabled")));
+			features.addFeature(new OreBreakFeature(this.getConfig().getBoolean("features.ores.enabled")));
+			features.addFeature(new OnlinePlayersFeature(this.getConfig().getBoolean("features.online-players.enabled")));
+			features.addFeature(new FoodConsumeFeature(this.getConfig().getBoolean("features.food-consume.enabled")));
 		} catch (FeatureException e) {
 			e.printStackTrace();
 		}

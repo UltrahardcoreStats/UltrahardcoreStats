@@ -17,11 +17,12 @@ public class URLRunnable implements Runnable {
 
 	private URL url;
 	private boolean doVerboseOutput;
-
+	private String URL_PATH;
+	
 	public URLRunnable(String appendURL, HashMap<String, String> args, boolean doVerboseOutput) throws MalformedURLException {
 		StringBuffer buffer = new StringBuffer();
 
-		buffer.append(URLManager.BASE_URL + appendURL + "/");
+		buffer.append(URLManager.BASE_URL + appendURL);
 		buffer.append("?api=" + UltrahardcoreStats.getAPI_KEY());
 
 		Set<String> keys = args.keySet();
@@ -29,6 +30,8 @@ public class URLRunnable implements Runnable {
 			buffer.append("&" + key + "=" + args.get(key));
 		}
 
+		URL_PATH = buffer.toString();
+		
 		this.url = new URL(buffer.toString());
 		this.doVerboseOutput = doVerboseOutput;
 	}
@@ -39,6 +42,8 @@ public class URLRunnable implements Runnable {
 			URLConnection connection = url.openConnection();
 
 			if (doVerboseOutput) {
+				System.out.println(URL_PATH);
+				
 				BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				String inputLine;
 
