@@ -24,7 +24,6 @@ public class FeatureList {
 
 	public StatsFeature getFeatureFor(String featureName) {
 		for (StatsFeature feature : features) {
-			this.plugin.getLogger().info("Found feature: " + feature.getTitle());
 			if (feature.getTitle().equalsIgnoreCase(featureName.trim())) {
 				return feature;
 			}
@@ -57,7 +56,6 @@ public class FeatureList {
 				} else {
 					try {
 						foundFeature.setState(true);
-						this.pluginManager.registerEvents(feature, UltrahardcoreStats.getInstance());
 						Bukkit.broadcastMessage(ChatColor.GOLD + "[Stats] - " + ChatColor.BLUE + "Feature " + ChatColor.GREEN + feature.getTitle() + ChatColor.BLUE + " has been globally enabled!");
 					} catch (Exception e) {
 						this.plugin.getLogger().warning(ChatColor.GREEN + "Unable to enable feature: " + feature.getTitle() + "!");
@@ -69,6 +67,7 @@ public class FeatureList {
 
 		// We haven't found the feature, so we add it to the list...
 		this.features.add(feature);
+		this.pluginManager.registerEvents(feature, UltrahardcoreStats.getInstance());
 	}
 
 	public void removeFeature(StatsFeature feature) throws FeatureException {
