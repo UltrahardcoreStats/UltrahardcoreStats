@@ -1,0 +1,10 @@
+name: UltraHardcore Stats
+main: com.ttaylorr.uhc.UltrahardcoreStats
+version: 2.0
+commands:
+    statsfeature:
+        description: Enables or disables stats feature modules.
+        usage: /statsfeature <featurename> <state>
+    activefeatures:
+        description: Shows all active feature modules
+        usage: /activefeatures
