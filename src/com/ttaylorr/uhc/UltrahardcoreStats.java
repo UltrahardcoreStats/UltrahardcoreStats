@@ -9,6 +9,7 @@ import com.ttaylorr.uhc.commands.ActiveFeaturesCommandExecutor;
 import com.ttaylorr.uhc.commands.StatsFeatureCommandExecutor;
 import com.ttaylorr.uhc.exceptions.FeatureException;
 import com.ttaylorr.uhc.features.FeatureList;
+import com.ttaylorr.uhc.features.core.FoodConsumeFeature;
 import com.ttaylorr.uhc.features.core.OreBreakFeature;
 import com.ttaylorr.uhc.features.core.OnlinePlayersFeature;
 import com.ttaylorr.uhc.web.URLManager;
