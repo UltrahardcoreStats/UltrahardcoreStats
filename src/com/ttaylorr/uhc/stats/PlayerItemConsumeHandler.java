@@ -15,7 +15,6 @@ public class PlayerItemConsumeHandler implements Listener {
 
 	boolean isValuable;
 
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerItemConsume(final PlayerItemConsumeEvent event) {
 		
@@ -36,7 +35,7 @@ public class PlayerItemConsumeHandler implements Listener {
 //				event.getPlayer().sendMessage(ChatColor.GOLD + "[Food] " + event.getItem().getType().name() + ChatColor.RESET);
 				try {
 					URL playerEatURL = new URL("http://uhc.ttaylorr.com/stats_php/food_item.php?api=" + WebInterface.getAPI_KEY() + "&type=" + foodFormat(event.getItem()) + "&player=" + event.getPlayer().getName());
-					Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerEatURL));
+					Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new URLRunnable(playerEatURL));
 				} catch(Exception e) {
 					
 				}

@@ -37,7 +37,7 @@ public class PlayerKillstreakHandler implements Listener {
 				WebInterface.getKillstreaks().add(new Killstreak(event.getEntity().getKiller(), 1));
 				try {
 					URL playerKilstreakURL = new URL("http://uhc.ttaylorr.com/stats_php/killstreak.php?api=" + WebInterface.getAPI_KEY() + "&player=" + event.getEntity().getKiller().getName() + "&ks=1");
-					Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerKilstreakURL));
+					Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new URLRunnable(playerKilstreakURL));
 				} catch (Exception e) {
 
 				}
@@ -45,7 +45,7 @@ public class PlayerKillstreakHandler implements Listener {
 				ks.addKill();
 				try {
 					URL playerKilstreakURL = new URL("http://uhc.ttaylorr.com/stats_php/killstreak.php?api=" + WebInterface.getAPI_KEY() + "&player=" + event.getEntity().getKiller().getName() + "&ks=" + ks.getKills());
-					Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerKilstreakURL));
+					Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new URLRunnable(playerKilstreakURL));
 				} catch (Exception e) {
 
 				}

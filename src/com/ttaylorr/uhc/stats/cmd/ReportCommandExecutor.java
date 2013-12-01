@@ -24,7 +24,6 @@ public class ReportCommandExecutor implements CommandExecutor {
 		this.plugin = plugin;
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] cmd_args) {
 		args.clear();
@@ -48,7 +47,7 @@ public class ReportCommandExecutor implements CommandExecutor {
 				try {
 					final URL reportURL = new URL("http://uhc.ttaylorr.com/stats_php/commands/report.php?reporter=" + args.get(0) + "&subject=" + args.get(1) + "&reason=" + args.get(2) + "&api=" + WebInterface.getAPI_KEY());
 					
-					Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new Runnable(){
+					Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new Runnable(){
 						@Override
 						public void run() {
 							try {

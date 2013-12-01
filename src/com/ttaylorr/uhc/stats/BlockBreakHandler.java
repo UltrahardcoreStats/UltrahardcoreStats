@@ -11,7 +11,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 public class BlockBreakHandler implements Listener {
 
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onBlockBreak(BlockBreakEvent event) {
 		
@@ -30,7 +29,7 @@ public class BlockBreakHandler implements Listener {
 		if(ore_name != null && player_name != null) {
 			try {
 				URL playerEntryURL = new URL("http://uhc.ttaylorr.com/stats_php/ore.php?player=" + player_name + "&ore_name=" + ore_name + "&api=" + WebInterface.getAPI_KEY());
-				Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerEntryURL));
+				Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new URLRunnable(playerEntryURL));
 			} catch(Exception e) {
 				
 			}		

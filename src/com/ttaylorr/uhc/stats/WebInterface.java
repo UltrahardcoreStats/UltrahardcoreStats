@@ -144,7 +144,7 @@ public class WebInterface extends JavaPlugin {
 		for(Player p : Bukkit.getOnlinePlayers()) {
 			try {
 				URL playerEntryURL = new URL("http://uhc.ttaylorr.com/stats_php/login.php?api=" + WebInterface.getAPI_KEY() + "&player=" + p.getName() + "&hostname=" + p.getAddress().getAddress().getHostAddress());
-				Bukkit.getScheduler().scheduleAsyncDelayedTask(this, new URLRunnable(playerEntryURL));
+				Bukkit.getScheduler().runTaskAsynchronously(this, new URLRunnable(playerEntryURL));
 			} catch (MalformedURLException e2) {
 				e2.printStackTrace();
 			}
@@ -202,7 +202,7 @@ public class WebInterface extends JavaPlugin {
 							// + "&hit=" + pt.getHit() + "&missed=" +
 							// pt.getMissed() + "&api=" +
 							// WebInterface.getAPI_KEY());
-							Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerProjectileUpdateURL));
+							Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new URLRunnable(playerProjectileUpdateURL));
 
 							pt.setHit(0);
 							pt.setMissed(0);
@@ -251,7 +251,7 @@ public class WebInterface extends JavaPlugin {
 
 		try {
 			URL playerEntryURL = new URL("http://uhc.ttaylorr.com/stats_php/server_validate_apikey.php?api=" + API_KEY + "&online=true");
-			Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerEntryURL));
+			Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new URLRunnable(playerEntryURL));
 		} catch (Exception e) {
 			logger.severe("Error connecting to the server");
 		}
@@ -316,7 +316,7 @@ public class WebInterface extends JavaPlugin {
 
 				try {
 					final URL playersStats = new URL("http://uhc.ttaylorr.com/stats_php/stats.php/?p=" + playername);
-					Bukkit.getScheduler().scheduleAsyncDelayedTask(this, new Runnable() {
+					Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable() {
 						@Override
 						public void run() {
 							try {

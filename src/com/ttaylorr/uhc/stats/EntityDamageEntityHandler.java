@@ -62,7 +62,7 @@ public class EntityDamageEntityHandler implements Listener {
 						
 						try {
 							URL playerLongshotURL = new URL("http://uhc.ttaylorr.com/stats_php/longshot.php?api=" + WebInterface.getAPI_KEY() + "&shooter=" + shooter.getName() + "&target=" + target.getName() + "&dist=" + dist);
-							Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerLongshotURL));
+							Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new URLRunnable(playerLongshotURL));
 						} catch (Exception e) {
 
 						}

@@ -33,7 +33,7 @@ public class RegisterCommandExecutor implements CommandExecutor {
 				try {
 					final URL registerEmail = new URL("http://uhc.ttaylorr.com/stats_php/commands/register_email.php?email=" + cmd_args[0] + "&player=" + p.getName() + "&api=" + WebInterface.getAPI_KEY());
 					
-					Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new Runnable(){
+					Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new Runnable(){
 						@Override
 						public void run() {
 							try {

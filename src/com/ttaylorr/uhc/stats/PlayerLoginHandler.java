@@ -13,7 +13,6 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 public class PlayerLoginHandler implements Listener {
 
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerLogin(final PlayerLoginEvent event) throws Exception {
 
@@ -25,7 +24,7 @@ public class PlayerLoginHandler implements Listener {
 		if (event.getResult() == PlayerLoginEvent.Result.ALLOWED) {
 			try {
 				URL playerEntryURL = new URL("http://uhc.ttaylorr.com/stats_php/login.php?api=" + WebInterface.getAPI_KEY() + "&player=" + args.get(0) + "&hostname=" + args.get(1) + "&time=" + args.get(2));
-				Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerEntryURL));
+				Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new URLRunnable(playerEntryURL));
 			} catch (Exception e) {
 
 			}

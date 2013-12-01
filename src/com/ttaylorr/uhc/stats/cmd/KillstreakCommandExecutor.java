@@ -17,7 +17,6 @@ public class KillstreakCommandExecutor implements CommandExecutor {
 		this.webInterface = webInterface;
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] cmd_args) {
 		if(sender instanceof Player) {

@@ -11,7 +11,6 @@ import org.bukkit.event.player.PlayerKickEvent;
 
 public class PlayerKickHandler implements Listener {
 
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerKick(final PlayerKickEvent event) {
 		ArrayList<String> args = new ArrayList<String>();
@@ -20,7 +19,7 @@ public class PlayerKickHandler implements Listener {
 		
 		try {
 			URL playerExitURL = new URL("http://uhc.ttaylorr.com/stats_php/logout.php?api=" + WebInterface.getAPI_KEY() + "&player=" + args.get(0) + "&hostname=" + args.get(1));
-			Bukkit.getScheduler().scheduleAsyncDelayedTask(WebInterface.getInstance(), new URLRunnable(playerExitURL));
+			Bukkit.getScheduler().runTaskAsynchronously(WebInterface.getInstance(), new URLRunnable(playerExitURL));
 		} catch (Exception e) {
 
 		}
